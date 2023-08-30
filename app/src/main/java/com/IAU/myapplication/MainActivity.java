@@ -80,8 +80,6 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             } else {
                                 //Login olunamazsa yapılacaklar
-                                Intent intent = new Intent(MainActivity.this, UserActivity.class);
-                                startActivity(intent);
                                 Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             }
                         }

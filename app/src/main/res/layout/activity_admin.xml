@@ -7,34 +7,41 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100sp"
+        android:layout_height="match_parent"
         android:background="#F1FEFF"
         android:id="@+id/header"
         >
 
-        <EditText
-            android:id="@+id/input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:ems="10"
-            android:hint="Enter item here" />
         <Button
-            android:layout_width="40sp"
+            android:layout_width="250dp"
             android:layout_height="40sp"
-            android:layout_toRightOf="@+id/input"
-            android:id="@+id/add"
-            android:layout_marginLeft="7sp"
+            android:id="@+id/createVote"
+            android:layout_marginTop="200dp"
+            android:layout_centerHorizontal="true"
+            android:text="ANKET OLUŞTUR"
+            />
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="40sp"
+            android:id="@+id/showVotes"
+            android:layout_below="@+id/createVote"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="+"
+            android:text="ANKETLERİ GÖRÜNTÜLE"
+            />
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="40sp"
+            android:id="@+id/logout"
+            android:layout_below="@+id/showVotes"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="ÇIKIŞ YAP"
+            android:textColor="@color/material_dynamic_primary20"
             />
 
     </RelativeLayout>
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/list"
-        android:layout_below="@+id/header"
-        />
 
 </RelativeLayout>
