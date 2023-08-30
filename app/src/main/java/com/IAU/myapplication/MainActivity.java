@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
     private Button loginButton, signUpButton;
+    private String email,password;
     private TextView successTextView;
     private FirebaseAuth mAuth;
     private static final String TAG = "YourActivityOrClass"; // Declare TAG here
@@ -53,12 +54,12 @@ public class MainActivity extends AppCompatActivity {
         successTextView = findViewById(R.id.successTextView);
         signUpButton = findViewById(R.id.signUpButton);
 
-        String email = emailEditText.getText().toString();
-        String password = passwordEditText.getText().toString();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                email = emailEditText.getText().toString();
+                password = passwordEditText.getText().toString();
                 if (validateUserCreditentialsForLogin(email, password)) {
                     mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -79,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             } else {
                                 //Login olunamazsa yapılacaklar
+                                Intent intent = new Intent(MainActivity.this, UserActivity.class);
+                                startActivity(intent);
                                 Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -90,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                email = emailEditText.getText().toString();
+                password = passwordEditText.getText().toString();
                 if (validateUserCreditentials(email, password)) {
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override

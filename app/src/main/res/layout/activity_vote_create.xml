@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".VoteActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:background="#F1FEFF"
+        android:id="@+id/header"
+        >
+
+        <EditText
+            android:id="@+id/txtAddOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_centerVertical="true"
+            android:ems="13"
+            android:hint="Add option" />
+
+        <Button
+            android:id="@+id/addOption"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/txtAddOption"
+            android:text="+" />
+
+        <ImageButton
+            android:id="@+id/confirmVote"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/addOption"
+            android:src="@drawable/common_full_open_on_phone" />
+
+        <TextView
+            android:id="@+id/voteNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="VOTE ENTITY NAME"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/listLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listViewVoteOption" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

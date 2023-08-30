@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.IAU.Entities.VoteEntity;
 import com.google.firebase.database.DatabaseReference;
@@ -21,13 +22,13 @@ import java.util.List;
 public class AdminActivity extends AppCompatActivity {
     ListView listView;
     List<VoteEntity> voteEntityList;
-    ListAdapter<String> adapter;
-
+    VoteEntity vote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+
     }
 
 
