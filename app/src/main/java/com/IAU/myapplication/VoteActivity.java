@@ -36,6 +36,8 @@ public class VoteActivity extends AppCompatActivity {
     private Button addOptionButton;
     private ImageButton confirmVote;
     private EditText txtAddOptionName;
+    private ListView listView;
+    private OptionAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +48,17 @@ public class VoteActivity extends AppCompatActivity {
         addOptionButton = findViewById(R.id.addOption);
         txtAddOptionName = findViewById(R.id.txtAddOption);
 
-        final TextView voteNameTextView = (TextView) findViewById(R.id.voteNameTextView);
-        voteNameTextView.setText(vote.getVoteName());
-
-        OptionAdapter adapter = new OptionAdapter(this, voteEntityList);
-        ListView listView = findViewById(R.id.listViewVoteOption);
+        if(voteEntityList == null){
+            voteEntityList = new ArrayList<>();
+        }
+        adapter = new OptionAdapter(this, voteEntityList);
+        listView = findViewById(R.id.listViewVoteOption);
         listView.setAdapter(adapter);
+
+        if(vote != null){
+            final TextView voteNameTextView = (TextView) findViewById(R.id.voteNameTextView);
+            voteNameTextView.setText(vote.getVoteName());
+        }
 
     }
 
@@ -66,6 +73,7 @@ public class VoteActivity extends AppCompatActivity {
                 option.setOptionName(txtAddOptionName.getText().toString());
                 option.setOptionVoteCount(0l);
                 voteEntityList.add(option);
+                listView.setAdapter(adapter);
             }
         });
         confirmVote.setOnClickListener(new View.OnClickListener() {

@@ -12,10 +12,20 @@
         android:padding="8dp"/>
 
     <TextView
-        android:id="@+id/optionVoteCountTextView"
+        android:id="@+id/voteCountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:padding="8dp"/>
+        android:text="Option Vote Count :"
+        android:layout_marginLeft="200dp"
+        />
+
+    <TextView
+        android:id="@+id/optionVoteCountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:padding="8dp"
+        android:textSize="16sp" />
 
 </LinearLayout>
