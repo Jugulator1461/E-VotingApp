@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hello My Application</string>
+    <string name="app_name">E-Voting App</string>
     <string name="welcome1">Welcome</string>
     <string name="loginButton">Login</string>
 </resources>

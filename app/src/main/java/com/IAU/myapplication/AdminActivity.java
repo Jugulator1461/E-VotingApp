@@ -28,9 +28,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class AdminActivity extends AppCompatActivity {
-    ListView listView;
-    List<VoteEntity> voteEntityList;
-    VoteEntity vote;
     Button createVoteBtn, showVotesBtn, logoutBtn;
 
     @Override
@@ -54,7 +51,7 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TÜM ANKETLERİN GÖSTERİLDİĞİ SAYFA - OY SAYILARIYLA BİRLİKTE - ADMİNDE DE USERDA DA ORTAK CALISACAK
-                Intent intent = new Intent(AdminActivity.this, VoteActivity.class);
+                Intent intent = new Intent(AdminActivity.this, VoteListActivity.class);
                 startActivity(intent);
             }
         });
@@ -65,9 +62,9 @@ public class AdminActivity extends AppCompatActivity {
             public void onClick (View view){
                 mAuth.signOut();
                 FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(AdminActivity.this, MainActivity.class);
-            startActivity(intent);
-        }
+                Intent intent = new Intent(AdminActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
         });
     }
 }

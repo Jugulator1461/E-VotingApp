@@ -5,7 +5,10 @@ import java.util.List;
 public class VoteEntity {
     private String voteName;
     private List<VoteOptionEntity> voteOption;
+    private Long status;
 
+    public Long getStatus() { return status; }
+    public void setStatus(Long status) { this.status = status; }
     public List<VoteOptionEntity> getVoteOption() {
         return voteOption;
     }

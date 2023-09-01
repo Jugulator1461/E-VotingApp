@@ -55,10 +55,8 @@ public class MainActivity extends AppCompatActivity {
         successTextView = findViewById(R.id.successTextView);
         signUpButton = findViewById(R.id.signUpButton);
         //BURADA LOGIN KISMINI ATLADIM...
-        //Intent intent = new Intent(MainActivity.this, AdminActivity.class);
-        //startActivity(intent);
-
-
+        Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+        startActivity(intent);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,8 +83,6 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             } else {
                                 //Login olunamazsa yapılacaklar
-                                //Intent intent = new Intent(MainActivity.this, AdminActivity.class);
-                                //startActivity(intent);
                                 Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             }
                         }

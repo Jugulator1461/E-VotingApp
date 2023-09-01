@@ -24,7 +24,7 @@ public class VoteAdapter extends ArrayAdapter<VoteEntity> {
         VoteEntity vote = getItem(position);
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_option_create_row, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_vote_list, parent, false);
         }
         TextView optionNameTextView = convertView.findViewById(R.id.optionNameTextView);
         optionNameTextView.setText(vote.getVoteName());
