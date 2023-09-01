@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
 
@@ -54,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
         successTextView = findViewById(R.id.successTextView);
         signUpButton = findViewById(R.id.signUpButton);
         //BURADA LOGIN KISMINI ATLADIM...
-        Intent intent = new Intent(MainActivity.this, AdminActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+        //startActivity(intent);
+
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                                 if ("oIeWLy5blBOq3HYBIkQxyYW7qGR2".equals(user.getUid())) {
                                     // Login Doğrulama ve Navigasyon
                                     Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+                                    startActivity(intent);
                                 } else {
                                     // Login Doğrulama ve Navigasyon
                                     Intent intent = new Intent(MainActivity.this, UserActivity.class);
@@ -82,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             } else {
                                 //Login olunamazsa yapılacaklar
-                                Intent intent = new Intent(MainActivity.this, AdminActivity.class);
-                                startActivity(intent);
+                                //Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+                                //startActivity(intent);
                                 Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             }
                         }

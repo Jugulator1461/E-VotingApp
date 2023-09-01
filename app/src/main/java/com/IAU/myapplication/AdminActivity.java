@@ -19,6 +19,7 @@ import com.IAU.Entities.VoteEntity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -36,7 +37,7 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();//Session için variable
         createVoteBtn = findViewById(R.id.createVote);
         showVotesBtn = findViewById(R.id.showVotes);
         logoutBtn = findViewById(R.id.logout);
@@ -57,7 +58,16 @@ public class AdminActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view){
+                mAuth.signOut();
+                FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(AdminActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+        });
     }
-
-
 }

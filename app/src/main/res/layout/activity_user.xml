@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".UserActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/votingRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_voting" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
