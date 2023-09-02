@@ -1,6 +1,7 @@
 package com.IAU.Entities;
 
 public class VoteOptionEntity {
+
     private String optionName;
     private Long optionVoteCount;
 
@@ -10,6 +11,7 @@ public class VoteOptionEntity {
     public void setOptionVoteCount(Long optionVoteCount) {
         this.optionVoteCount = optionVoteCount;
     }
+
     public String getOptionName() {
         return optionName;
     }

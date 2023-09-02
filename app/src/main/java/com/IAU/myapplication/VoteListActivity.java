@@ -61,14 +61,15 @@ public class VoteListActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    Map<String, VoteEntity> td = (HashMap<String, VoteEntity>) snapshot.getValue();
-                    td.get("0");
-                    for (int i = 0; i < td.size(); i++) {
-                        if(td.containsKey(String.valueOf(i)) && td.get(String.valueOf(i)) instanceof VoteEntity){
-                            VoteEntity vote = (VoteEntity) td.get(String.valueOf(i));
-                            Toast.makeText(VoteListActivity.this, vote.getVoteName()+"Veri Aktarımı Başarısız", Toast.LENGTH_SHORT).show();
-                        }
+                for (DataSnapshot anketSnapshot : snapshot.getChildren()) {
+                    String voteName = (String) anketSnapshot.child("voteName").getValue();
+                    Log.d("VoteName", voteName);
+                    DataSnapshot voteOptionSnapshot = anketSnapshot.child("voteOption");
+                    for (DataSnapshot optionSnapshot : voteOptionSnapshot.getChildren()) {
+                        String optionName = (String) optionSnapshot.child("optionName").getValue();
+                        long optionVoteCount = (long) optionSnapshot.child("optionVoteCount").getValue();
+                        Log.d("OptionName", optionName);
+                        Log.d("OptionVoteCount", String.valueOf(optionVoteCount));
                     }
                 }
             }
