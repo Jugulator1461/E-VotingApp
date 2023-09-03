@@ -1,6 +1,8 @@
 package com.IAU.Entities;
 
-public class VoteOptionEntity {
+import java.io.Serializable;
+
+public class VoteOptionEntity implements Serializable {
 
     private String optionName;
     private Long optionVoteCount;

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".VoteListActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300sp"
+        android:background="#F1FEFF"
+        android:id="@+id/pieChartLayout">
+
+        <com.anychart.AnyChartView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/pieChartView"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/opinionListLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/pieChartLayout">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/opinionListView" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

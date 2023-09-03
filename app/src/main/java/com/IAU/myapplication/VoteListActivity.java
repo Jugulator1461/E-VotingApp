@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -22,6 +23,7 @@ import com.IAU.Adapters.VoteDisplayAdapter;
 import com.IAU.Entities.VoteEntity;
 import com.IAU.Entities.VoteEntityList;
 import com.IAU.Entities.VoteOptionEntity;
+import com.anychart.AnyChartView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -31,6 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +41,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class VoteListActivity extends AppCompatActivity {
+    AnyChartView anyChartView;
     VoteEntityList voteEntityList;
     VoteEntity vote;
 
@@ -62,16 +66,21 @@ public class VoteListActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot anketSnapshot : snapshot.getChildren()) {
-                    String voteName = (String) anketSnapshot.child("voteName").getValue();
-                    Log.d("VoteName", voteName);
+                    VoteEntity voteEnt = new VoteEntity();
+                    voteEnt.setVoteName((String) anketSnapshot.child("voteName").getValue());
+                    voteEnt.setStatus((long) anketSnapshot.child("status").getValue());
+                    List<VoteOptionEntity> voteOptionEntityList = new ArrayList<>();
                     DataSnapshot voteOptionSnapshot = anketSnapshot.child("voteOption");
                     for (DataSnapshot optionSnapshot : voteOptionSnapshot.getChildren()) {
-                        String optionName = (String) optionSnapshot.child("optionName").getValue();
-                        long optionVoteCount = (long) optionSnapshot.child("optionVoteCount").getValue();
-                        Log.d("OptionName", optionName);
-                        Log.d("OptionVoteCount", String.valueOf(optionVoteCount));
+                        VoteOptionEntity optionEntity = new VoteOptionEntity();
+                        optionEntity.setOptionName((String) optionSnapshot.child("optionName").getValue());
+                        optionEntity.setOptionVoteCount((long) optionSnapshot.child("optionVoteCount").getValue());
+                        voteOptionEntityList.add(optionEntity);
                     }
+                    voteEnt.setVoteOption(voteOptionEntityList);
+                    voteEntityList.getVoteEntityList().add(voteEnt);
                 }
+                listView.setAdapter(adapter);
             }
 
             @Override
@@ -81,6 +90,15 @@ public class VoteListActivity extends AppCompatActivity {
             }
         });
 
-        //VAR OLAN ANKETLER LİSTE OLARAK ÇEKİLECEK VE ÖNYÜZE AKTARILACAK.
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                VoteEntity selectedVoteEntity = (VoteEntity) parent.getItemAtPosition(position);
+                Intent intent = new Intent(VoteListActivity.this, VoteSelectActivity.class);
+                intent.putExtra("voteEnt", selectedVoteEntity);
+                startActivity(intent);
+            }
+        });
+
     }
 }
