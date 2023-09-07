@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.IAU.Entities.VoteOptionEntity;
 import com.IAU.myapplication.R;
@@ -23,14 +24,14 @@ public class OptionAdapter extends ArrayAdapter<VoteOptionEntity> {
         VoteOptionEntity option = getItem(position);
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_option_create_row, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_option_select, parent, false);
         }
 
-        TextView optionNameTextView = convertView.findViewById(R.id.optionNameTextView);
-        TextView optionVoteCountTextView = convertView.findViewById(R.id.optionVoteCountTextView);
+        TextView optionNameTextView = convertView.findViewById(R.id.optionNameTextView2);
+        ToggleButton toggleButton = convertView.findViewById(R.id.voteToggleButton);
 
         optionNameTextView.setText(option.getOptionName());
-        optionVoteCountTextView.setText(String.valueOf(option.getOptionVoteCount()));
+        toggleButton.setTag(option.getOptionName());
 
         return convertView;
     }

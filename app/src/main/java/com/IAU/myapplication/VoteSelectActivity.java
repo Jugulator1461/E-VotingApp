@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.IAU.Adapters.OptionAdapter;
 import com.IAU.Adapters.VoteDisplayAdapter;
@@ -45,6 +46,11 @@ import java.util.Objects;
 public class VoteSelectActivity extends AppCompatActivity {
     AnyChartView anyChartView;
     VoteEntity voteEntity;
+    private ListView listView;
+    private OptionAdapter adapter;
+    private ToggleButton toggleButton;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,10 @@ public class VoteSelectActivity extends AppCompatActivity {
         Intent intent = getIntent();
         voteEntity = (VoteEntity) intent.getSerializableExtra("voteEnt");
         setupPieChartView();
+
+        listView = findViewById(R.id.opinionListView);
+        adapter = new OptionAdapter(this, voteEntity.getVoteOption());
+        listView.setAdapter(adapter);
     }
 
     public void setupPieChartView() {
@@ -65,6 +75,26 @@ public class VoteSelectActivity extends AppCompatActivity {
         pie.data(dataEntries);
         pie.title(voteEntity.getVoteName());
         anyChartView.setChart(pie);
+    }
+
+    public void toggleVote(View view){
+        if(((ToggleButton) view).isChecked()) {
+            // handle toggle on
+            for (VoteOptionEntity optionEntity: voteEntity.getVoteOption()) {
+                if(((ToggleButton) view).getTag().equals(optionEntity.getOptionName())){
+                    optionEntity.setOptionStatus(1L);
+                    Toast.makeText(VoteSelectActivity.this, optionEntity.getOptionName()+" TOGGLE ON "+optionEntity.getOptionStatus(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        } else {
+            // handle toggle off
+            for (VoteOptionEntity optionEntity: voteEntity.getVoteOption()) {
+                if(((ToggleButton) view).getTag().equals(optionEntity.getOptionName())){
+                    optionEntity.setOptionStatus(0L);
+                    Toast.makeText(VoteSelectActivity.this, optionEntity.getOptionName()+" TOGGLE OFF "+optionEntity.getOptionStatus(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 }
 

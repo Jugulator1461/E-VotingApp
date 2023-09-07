@@ -47,6 +47,7 @@ public class VoteListActivity extends AppCompatActivity {
 
     private ListView listView;
     private VoteDisplayAdapter adapter;
+    private List<VoteOptionEntity> voteOptionEntityList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,12 +70,13 @@ public class VoteListActivity extends AppCompatActivity {
                     VoteEntity voteEnt = new VoteEntity();
                     voteEnt.setVoteName((String) anketSnapshot.child("voteName").getValue());
                     voteEnt.setStatus((long) anketSnapshot.child("status").getValue());
-                    List<VoteOptionEntity> voteOptionEntityList = new ArrayList<>();
+                    voteOptionEntityList = new ArrayList<>();
                     DataSnapshot voteOptionSnapshot = anketSnapshot.child("voteOption");
                     for (DataSnapshot optionSnapshot : voteOptionSnapshot.getChildren()) {
                         VoteOptionEntity optionEntity = new VoteOptionEntity();
                         optionEntity.setOptionName((String) optionSnapshot.child("optionName").getValue());
                         optionEntity.setOptionVoteCount((long) optionSnapshot.child("optionVoteCount").getValue());
+                        optionEntity.setOptionStatus(1L);
                         voteOptionEntityList.add(optionEntity);
                     }
                     voteEnt.setVoteOption(voteOptionEntityList);
@@ -99,6 +101,8 @@ public class VoteListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
     }
 }

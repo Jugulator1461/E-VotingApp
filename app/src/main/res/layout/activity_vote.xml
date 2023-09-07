@@ -16,13 +16,11 @@
             android:layout_height="match_parent"
             android:id="@+id/pieChartView"/>
 
-
     </RelativeLayout>
-
     <RelativeLayout
         android:id="@+id/opinionListLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/pieChartLayout">
 
         <ListView
@@ -32,5 +30,19 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="75dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/opinionListLayout">
+
+        <Button
+            android:id="@+id/castVote"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Confirm Vote"
+            android:onClick="castVote">
+        </Button>
+
+    </RelativeLayout>
 
 </RelativeLayout>
