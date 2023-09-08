@@ -23,7 +23,7 @@ import com.IAU.Adapters.VoteDisplayAdapter;
 import com.IAU.Entities.VoteEntity;
 import com.IAU.Entities.VoteEntityList;
 import com.IAU.Entities.VoteOptionEntity;
-import com.anychart.AnyChartView;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -41,13 +41,12 @@ import java.util.Map;
 import java.util.Objects;
 
 public class VoteListActivity extends AppCompatActivity {
-    AnyChartView anyChartView;
+
     VoteEntityList voteEntityList;
     VoteEntity vote;
 
     private ListView listView;
     private VoteDisplayAdapter adapter;
-    private List<VoteOptionEntity> voteOptionEntityList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,13 +69,12 @@ public class VoteListActivity extends AppCompatActivity {
                     VoteEntity voteEnt = new VoteEntity();
                     voteEnt.setVoteName((String) anketSnapshot.child("voteName").getValue());
                     voteEnt.setStatus((long) anketSnapshot.child("status").getValue());
-                    voteOptionEntityList = new ArrayList<>();
+                    List<VoteOptionEntity> voteOptionEntityList = new ArrayList<>();
                     DataSnapshot voteOptionSnapshot = anketSnapshot.child("voteOption");
                     for (DataSnapshot optionSnapshot : voteOptionSnapshot.getChildren()) {
                         VoteOptionEntity optionEntity = new VoteOptionEntity();
                         optionEntity.setOptionName((String) optionSnapshot.child("optionName").getValue());
                         optionEntity.setOptionVoteCount((long) optionSnapshot.child("optionVoteCount").getValue());
-                        optionEntity.setOptionStatus(1L);
                         voteOptionEntityList.add(optionEntity);
                     }
                     voteEnt.setVoteOption(voteOptionEntityList);
@@ -101,8 +99,6 @@ public class VoteListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
 
     }
 }

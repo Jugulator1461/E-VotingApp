@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
@@ -29,12 +30,11 @@ public class MainActivity extends AppCompatActivity {
     private String email,password;
     private TextView successTextView;
     private FirebaseAuth mAuth;
-    private static final String TAG = "YourActivityOrClass"; // Declare TAG here
-
+    private static final String TAG = "YourActivityOrClass";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        FirebaseApp.initializeApp(this);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
 
@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         successTextView = findViewById(R.id.successTextView);
         signUpButton = findViewById(R.id.signUpButton);
         //BURADA LOGIN KISMINI ATLADIM...
-        Intent intent = new Intent(MainActivity.this, AdminActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+        //startActivity(intent);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

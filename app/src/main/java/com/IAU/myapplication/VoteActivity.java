@@ -111,7 +111,7 @@ public class VoteActivity extends AppCompatActivity {
                             VoteEntity dbVote = snapshot.getValue(VoteEntity.class);
                             if (dbVote.getStatus().equals(1l)) {
                                 //BU İSME AİT AKTİF ANKET VAR
-                                Toast.makeText(VoteActivity.this, "Anket ismine ait aktif anket var. Anket ismini değiştirip tekrar deneyin.", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(VoteActivity.this, "Anket ismine ait aktif anket var. Anket ismini değiştirip tekrar deneyin.", Toast.LENGTH_SHORT).show();
                             } else {
                                 //BU ANKET OLUŞTURULABİLİR.
                                 anketOlustur(database);
